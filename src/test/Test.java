@@ -14,7 +14,7 @@ import model.Tabela;
 public class Test {
 
 	public static void main(String[] args) throws IOException {
-		MapeadorBanco map = new MapeadorBanco();
+		/*MapeadorBanco map = new MapeadorBanco();
 		FabricaConexao fabricaConexao = new FabricaConexao("jdbc:mysql://localhost/TESTE", "root", "admin");
 		Connection connection =  fabricaConexao.getConnection();
 		try {
@@ -33,15 +33,16 @@ public class Test {
 					if (coluna.isAutoInc())
 						System.out.print("(AI)");
 					System.out.println();
-				}*/
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}*/
 		
 		escreveArquivo arq = new escreveArquivo();
 		
 		arq.classeAtributosEscritor();
+		
 		
 	}
 }
