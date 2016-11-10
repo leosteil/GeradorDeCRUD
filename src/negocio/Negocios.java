@@ -1,5 +1,8 @@
 package negocio;
 
+import model.Coluna;
+import model.Tabela;
+
 public class Negocios {
 	
 	public String processaTipo(String tipo){
@@ -20,4 +23,22 @@ public class Negocios {
 		}	
 	}
 	
+	/*Procura em uma tabela a chave primaria*/
+	public String procuraPKEY(Tabela tab){
+		for(Coluna col : tab.getColunas()){
+			if(col.isPk()){
+				return col.getNome();
+			}
+			
+		}
+		return "null";
+	}
+	
+	/*verifica se a coluna é PKEY*/
+	public boolean isPKEY(Coluna col){
+		if(col.isPk()){
+			return true;
+		}
+		return false;
+	}
 }

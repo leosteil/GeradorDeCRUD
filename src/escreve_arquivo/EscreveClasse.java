@@ -14,10 +14,10 @@ import conexao.ConectaBanco;
 import conexao.FabricaConexao;
 import negocio.*;
 
-public class escreveArquivo {
+public class EscreveClasse {
 	
 	/*este método escreve o nome da classe + seus respectivos atributos*/
-	public static void classeAtributosEscritor() throws IOException {
+	public static void classeNomeAtributoEscritor() throws IOException {
         
 		MapeadorBanco map = new MapeadorBanco();
         Negocios neg = new Negocios();
@@ -27,8 +27,8 @@ public class escreveArquivo {
 		try {
 			Banco banco = map.getBanco("TESTE", connection);
 			for (Tabela tabela : banco.getTabelas()) {
-				BufferedWriter buffWrite = new BufferedWriter(new FileWriter("/home/leonardo/Documentos/" + tabela.getNome()+ ".java"));
-					buffWrite.append("public class " + tabela.getNome() + "{\n");
+				BufferedWriter buffWrite = new BufferedWriter(new FileWriter("/home/leonardo/Documentos/CRUDS/" + tabela.getNome()+ ".java"));
+					buffWrite.append("public class " + tabela.getNome() + " extends Registro{\n");
 					for (Coluna coluna : tabela.getColunas()) {
 						
 						String tipo = new String();
@@ -48,6 +48,7 @@ public class escreveArquivo {
 
 	}
 	
+	/*Este método escreve os métodos get e set de cada classe*/
 	public static void getSetEscritor(Tabela tab) throws IOException{
 		Negocios neg = new Negocios();
 		
@@ -55,7 +56,7 @@ public class escreveArquivo {
 		
 		
 		for (Coluna coluna : tab.getColunas()) {
-			BufferedWriter buffWrite = new BufferedWriter(new FileWriter("/home/leonardo/Documentos/" + tab.getNome()+ ".java", true));
+			BufferedWriter buffWrite = new BufferedWriter(new FileWriter("/home/leonardo/Documentos/CRUDS/" + tab.getNome()+ ".java", true));
 			
 			
 			tipo = neg.processaTipo(coluna.getTipo());
@@ -74,4 +75,5 @@ public class escreveArquivo {
 			buffWrite.close();
 		}	
 	}
+
 }
