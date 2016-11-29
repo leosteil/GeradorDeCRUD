@@ -1,0 +1,10 @@
+Documentação básica de apoio ao uso do Gerador de Crud desenvolvido como trabalho da disciplina de Paradigmas de Programação.
+O software está com o uso voltado ao banco de dados MySQL.
+Os arquivos .java que serão usados posteriormente ao uso do software serão criados no diretório Documentos,
+onde será criada a pasta CRUD. Dentro desta pasta, serão criados as pastas classes e DAOS.
+A pasta "Classes" irá conter as classes geradas atráves dos metadados obtidos do banco de dados. Também estarão neste mesmo
+diretório as classes de Banco de Dados (conexão) e as classes de Registros, que são as bases para os DAOS.
+A pasta "DAOS" irá conter os DAOS propriamente ditos. Ambos diretórios conterão as classes previamente organizadas com seus packages
+e imports.
+Vale ressaltar o seguinte: As classes criadas no diretório "Classes" devem obrigatóriamente estar dentro de um package chamado "modelo".
+Já as ClassesDAO, deverão se encontrar dentro de um package chamado "modeloDAOS".

@@ -11,5 +11,5 @@ public class ConectaBanco {
 		Connection connection =  fabricaConexao.getConnection();
 	
 		return connection;
-	}	
+	}
 }
