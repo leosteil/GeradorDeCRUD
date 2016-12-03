@@ -5,9 +5,15 @@ import model.Tabela;
 
 public class Negocios {
 	
-	public String processaTipo(String tipo){
+	/*Este método é usado para alterar o tipo proveniente do banco em um tipo aceito em JAVA*/
+	/*O segundo paremetro é usado para verificar se a função é chamada para construir uma classe...*/
+	/*...ou para construir os DAOS*/
+	public String processaTipo1(String tipo, int local){
 		switch (tipo) {
 			case "INT":
+				if(local == 1){
+					return "Int";
+				}
 				return "Integer";
 			
 				
@@ -22,6 +28,26 @@ public class Negocios {
 
 		}	
 	}
+	
+	/*Este método é usado para enviar as função que fazem o DAO
+	public String processaTipo2(String tipo){
+		switch (tipo) {
+			case "INT":
+				if()
+				return "Int";
+			
+				
+			case "VARCHAR":
+				return "String";
+				
+			case "DOUBLE":
+				return "float";
+				
+			default:
+				return "tipo indefinido";
+
+		}	
+	}*/
 	
 	/*Procura em uma tabela a chave primaria*/
 	public String procuraPKEY(Tabela tab){

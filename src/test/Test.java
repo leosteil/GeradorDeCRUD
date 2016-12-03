@@ -20,7 +20,7 @@ public class Test {
 		EscreveClasse classe = new EscreveClasse();
 		EscreveDao dao = new EscreveDao();
 		
-		classe.classeNomeAtributoEscritor();
+		classe.classeNomeEscritor();
 		dao.escreveNomeDAO();
 		
 	}
