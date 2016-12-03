@@ -51,59 +51,52 @@ public class EscreveDao {
 	
 	/*Método para criar o construtor que inicia as strings das consultas SQL*/
 	public void escreveConstrutorDAO(Tabela tab, BufferedWriter buffWrite) throws IOException {
-		ArrayList<String> colList = new ArrayList<String>();
 		Negocios neg = new Negocios();
 		int i = 0;
 		int j = 0;
-		String aux = null;
 		
 		buffWrite.append("\tpublic " + tab.getNome().substring(0, 1).toUpperCase()+ tab.getNome().substring(1)+"DAO() {\n");
 		
-		/*trecho que cod que trata do sql de insercão*/
+		/*trecho do cod que trata do sql de insercão*/
 		buffWrite.append("\t\tsetSqlInsercao(\"INSERT INTO " + tab.getNome() + " (");
 		
-		/*for(Coluna col: tab.getColunas()){
+		for(Coluna col: tab.getColunas()){
+			if(i !=0 ) buffWrite.append(",");
+			
 			if(!col.isPk()){
-				buffWrite.append("\t\tps.set" + neg.processaTipo1(col.getTipo() ,1) + "("+i+",t."+col.getNome()+");\n");
+				buffWrite.append(""+col.getNome());
 			}else i--;
 			
 			i++;
-		}*/
-		
-		for(j = 0; j<i; j++){
-			if(j+1 == i && !aux.equals(colList.get(j))){
-				buffWrite.append(colList.get(j) + "");
-			}else if(!aux.equals(colList.get(j))){ 
-				buffWrite.append(colList.get(j) + ", ");
-			}
-			
 		}
-		
+				
 		buffWrite.append(") VALUES(");
-		for(j = 0; j<i-1; j++){ //i-1 pq não coloca "?" pra pkey CONFERIR E VERIFICAR, POIS SE N TIVER PKEY VAI DA RUIM
-			if(j+1 == i-1){
+		for(j = 0; j<i; j++){ 
+			if(j+1 == i){
 				buffWrite.append("?");
 			}else{
 				buffWrite.append("?, ");
 			}
-			
 		}
 		
 		buffWrite.append(")\");\n");
-		/*Trecho de código que trata do sql de inserção*/
+		/*sql de inserção*/
 		
 		/*Trecho de código que trata do sql de alteração*/
 		buffWrite.append("\t\tsetSqlAlteracao(\"UPDATE " + tab.getNome() + " SET ");
+		i = 0;
 		
-		for(j = 0; j<i; j++){
-			if(j+1 == i){
-				buffWrite.append(colList.get(j) + " = ? " );
-			}
-			else buffWrite.append(colList.get(j) + " = ?, ");
+		for(Coluna col: tab.getColunas()){
+			if(i !=0 ) buffWrite.append(",");
 			
+			if(!col.isPk()){
+				buffWrite.append(col.getNome()+" =?");
+			}else i--;
+			
+			i++;
 		}
 		
-		buffWrite.append("WHERE "  + neg.procuraPKEY(tab) + " = ?\");\n");
+		buffWrite.append(" WHERE "  + neg.procuraPKEY(tab) + " = ?\");\n");
 		/*Trecho de código que trata do sql de alteração*/
 		
 		/*Trecho de código que trata do sql de exclusão*/
@@ -124,6 +117,8 @@ public class EscreveDao {
 		/*Trecho de código que trata do sql de busca unitária*/
 		
 		buffWrite.append("\t}\n");
+		
+		
 	}
 	
 	/*Método para preencher a inserção e alteração*/
